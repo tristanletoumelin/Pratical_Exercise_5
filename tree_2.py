@@ -72,6 +72,13 @@ class BinarySearchTree:
             self.preorder(node.lchild)
             self.preorder(node.rchild)
 
+    def inorder(self, node):
+        """ Perform a postorder traversal of the tree and print node values"""
+        if node is not None:
+            self.postorder(node.lchild)
+            print(node.data)
+            self.postorder(node.rchild)
+
     def postorder(self, node):
         """ Perform a postorder traversal of the tree and print node values"""
         if node is not None:
@@ -95,15 +102,32 @@ if __name__ == "__main__":
 
     c = [49, 38, 65, 97, 64, 76, 13, 77, 5, 1, 55, 50, 24]
 
-    bst = BinarySearchTree(c)
-    bst.display_tree(bst.root)
-    # Example usage:
-    # bst = BinarySearchTree(a)
-    # bst.preorder(bst.root)
-    # bst.search(bst.root, 2, 76)
+    bst_a = BinarySearchTree(a)
 
-    # Another example:
-    # bst = BinarySearchTree(a)
-    # bst.inorder(bst.root)
-    # bst.search(bst.root, 2, 3)
-    # bst.delete(bst.root, 60)
+    # Example 1: Testing the search method
+    search_result, node_found, parent_node = bst_a.search(bst_a.root, bst_a.root, 76)
+    print(f"Search Result: {search_result}")
+    if search_result:
+        print(f"Node Found: {node_found.data}")
+        print(f"Parent Node: {parent_node.data}")
+    else:
+        print("Node not found.")
+
+    # Example 2: Testing the insert method
+    bst_a.insert(30)
+    print("\nAfter Inserting 30:")
+    bst_a.preorder(bst_a.root)
+
+    # Example 3: Testing the delete method
+    bst_a.delete(bst_a.root, 38)
+    print("\nAfter Deleting 38:")
+    bst_a.preorder(bst_a.root)
+
+    # bst_a = BinarySearchTree(a)
+    # bst_a.display_tree(bst_a.root)
+
+    # bst_b = BinarySearchTree(b)
+    # bst_b.display_tree(bst_b.root)
+
+    # bst_c = BinarySearchTree(c)
+    # bst_c.display_tree(bst_c.root)
